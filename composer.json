@@ -22,6 +22,8 @@
     "homepage": "https://github.com/cyberelysium/ce-crud",
     "license": "MIT",
     "type": "library",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "authors": [
         {
             "name": "Sameera Pathmakumara",
