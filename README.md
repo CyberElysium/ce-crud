@@ -1,23 +1,26 @@
-CE-CRUD for Laravel
+# CE-CRUD for Laravel
+
 CE-CRUD is a comprehensive Laravel package designed to streamline the creation of CRUD (Create, Read, Update, Delete) operations in your Laravel applications. With a focus on domain-driven design, CE-CRUD simplifies the process of setting up models, migrations, controllers, services, and facades with minimal effort.
 
-Features
-Easy Installation: Set up CE-CRUD with a simple Composer command.
-Automatic Setup: Quickly generate the necessary directory structure for domain-driven design, including Facades and Services.
-CRUD Generation: Generate models, migrations, controllers, service files, and facades for your entities with a single command.
-Customizable Templates: Use .stub files for easy customization of generated files.
-Installation
+## Features
+
+- **Easy Installation**: Set up CE-CRUD with a simple Composer command.
+- **Automatic Setup**: Quickly generate the necessary directory structure for domain-driven design, including Facades and Services.
+- **CRUD Generation**: Generate models, migrations, controllers, service files, and facades for your entities with a single command.
+- **Customizable Templates**: Use `.stub` files for easy customization of generated files.
+
+## Installation
+
 To install CE-CRUD, run the following command in your Laravel project:
 
-bash
-Copy code
+```bash
 composer require cyberelysium/ce-crud
+
 After installation, publish the package's configuration (if applicable) and run the initialization command:
 
-bash
-Copy code
 php artisan vendor:publish --provider="CyberElysium\CECrud\CECrudServiceProvider"
 php artisan install:ce-crud
+
 This command sets up the necessary directory structure and updates your composer.json to support domain-driven design in your project.
 
 Usage
@@ -50,5 +53,7 @@ Document any change in behaviour - Make sure the README.md and any other relevan
 Consider our release cycle - We try to follow SemVer v2.0.0. Randomly breaking public APIs is not an option.
 Create feature branches - Don't ask us to pull from your main branch.
 One pull request per feature - If you want to do more than one thing, send multiple pull requests.
-License
+
+# License
+
 The CE-CRUD package is open-sourced software licensed under the MIT license.
