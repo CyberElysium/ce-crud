@@ -1,0 +1,45 @@
+<?php
+
+namespace domain\Services\{{name}}Service;
+
+use App\Models\{{name}};
+
+class {{name}}Service
+{
+    protected ${{nameLower}};
+
+    public function __construct()
+    {
+        $this->{{nameLower}} = new {{name}}();
+    }
+
+    public function create(array $data)
+    {
+        return $this->{{nameLower}}->create($data);
+    }
+
+    public function update(array $data, int $id)
+    {
+        return $this->{{nameLower}}->where('id', $id)->update($data);
+    }
+
+    public function delete(int $id)
+    {
+        return $this->{{nameLower}}->where('id', $id)->delete();
+    }
+
+    public function get(int $id)
+    {
+        return $this->{{nameLower}}->where('id', $id)->first();
+    }
+
+    public function getAll()
+    {
+        return $this->{{nameLower}}->all();
+    }
+
+    public function getPaginate(int $paginate)
+    {
+        return $this->{{nameLower}}->paginate($paginate);
+    }
+}

@@ -1,0 +1,68 @@
+{
+    "name": "cyberelysium/ce-crud",
+    "description": "Generate files for Crud process in laravel",
+    "keywords": [
+        "cyberelysium",
+        "ce-crud",
+        "laravel",
+        "crud",
+        "rest",
+        "generator",
+        "rest-api",
+        "laravel-package",
+        "crud-generator",
+        "laravel-crud-generator",
+        "composer-package",
+        "laravel-crud",
+        "laravel8",
+        "laravel9",
+        "laravel10",
+        "laravel11"
+    ],
+    "homepage": "https://github.com/cyberelysium/ce-crud",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Sameera Pathmakumara",
+            "email": "klsameerapathmakumara@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.0.0",
+        "illuminate/support": "^8.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cyberelysium\\CeCrud\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Cyberelysium\\CeCrud\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Cyberelysium\\CeCrud\\CeCrudServiceProvider"
+            ],
+            "aliases": {
+                "CeCrud": "Cyberelysium\\CeCrud\\CeCrudFacade"
+            }
+        }
+    }
+}
