@@ -3,6 +3,8 @@
 namespace Cyberelysium\CeCrud;
 
 use Illuminate\Support\ServiceProvider;
+use CyberElysium\CeCrud\Console\Commands\MakeCECrudCommand;
+use CyberElysium\CeCrud\Console\Commands\InstallCECrudCommand;
 
 class CeCrudServiceProvider extends ServiceProvider
 {
