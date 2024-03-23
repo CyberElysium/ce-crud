@@ -1,0 +1,91 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use domain\Facades\{{name}}Facade;
+use Illuminate\Http\Request;
+
+class {{name}}Controller extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $response['{{nameLowerPlural}}'] = {{name}}Facade::all();
+        return view('pages.{{nameLowerPlural}}.all')->with($response);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('pages.{{nameLowerPlural}}.new');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        {{name}}Facade::store($request->all());
+        return redirect()->route('{{nameLowerPlural}}.all')->with('alert-success', '{{name}} added successfully');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $response['{{nameLower}}'] = {{name}}Facade::get($id);
+        return view('pages.{{nameLowerPlural}}.show')->with($response);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $response['{{nameLower}}'] = {{name}}Facade::get($id);
+        return view('pages.{{nameLowerPlural}}.edit')->with($response);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        {{name}}Facade::update($request->all(), $id);
+        return redirect()->route('{{nameLowerPlural}}.all')->with('alert-success', '{{name}} updated successfully');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        {{name}}Facade::delete($id);
+        return redirect()->route('{{nameLowerPlural}}.all')->with('alert-success', '{{name}} deleted successfully');
+    }
+}

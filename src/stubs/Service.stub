@@ -1,6 +1,6 @@
 <?php
 
-namespace domain\Services\{{name}}Service;
+namespace domain\Services;
 
 use App\Models\{{name}};
 
@@ -13,33 +13,65 @@ class {{name}}Service
         $this->{{nameLower}} = new {{name}}();
     }
 
+    /**
+     * all
+     *
+     * @return void
+     */
+    public function all()
+    {
+        return $this->{{nameLower}}->all();
+    }
+
+    /**
+     * get
+     *
+     * @param  mixed ${{nameLower}}_id
+     * @return void
+     */
+    public function get(${{nameLower}}_id)
+    {
+        return $this->{{nameLower}}->find(${{nameLower}}_id);
+    }
+
+    /**
+     * create
+     *
+     * @param  mixed $data
+     * @return void
+     */
     public function create(array $data)
     {
         return $this->{{nameLower}}->create($data);
     }
 
-    public function update(array $data, int $id)
+    /**
+     * update
+     *
+     * @param  mixed ${{nameLower}}_id
+     * @param  mixed $data
+     * @return void
+     */
+    public function update(${{nameLower}}_id, array $data)
     {
-        return $this->{{nameLower}}->where('id', $id)->update($data);
+        ${{nameLower}} = $this->{{nameLower}}->find(${{nameLower}}_id);
+        return ${{nameLower}}->update($this->edit(${{nameLower}}, $data));
     }
 
-    public function delete(int $id)
+    protected function edit({{name}} ${{nameLower}}, $data)
     {
-        return $this->{{nameLower}}->where('id', $id)->delete();
+        return array_merge(${{nameLower}}->toArray(), $data);
     }
 
-    public function get(int $id)
+    /**
+     * delete
+     *
+     * @param  mixed ${{nameLower}}_id
+     * @return void
+     */
+    public function delete(${{nameLower}}_id)
     {
-        return $this->{{nameLower}}->where('id', $id)->first();
-    }
-
-    public function getAll()
-    {
-        return $this->{{nameLower}}->all();
-    }
-
-    public function getPaginate(int $paginate)
-    {
-        return $this->{{nameLower}}->paginate($paginate);
+        ${{nameLower}} = $this->{{nameLower}}->find(${{nameLower}}_id);
+        return ${{nameLower}}->delete();
     }
 }
