@@ -15,9 +15,11 @@ To install CE-CRUD, run the following command in your Laravel project:
 
 ``` composer require cyberelysium/ce-crud ```
 
-After installation, publish the package's configuration (if applicable) and run the initialization command:
+After installation, publish the package's configuration:
 
 ``` php artisan vendor:publish --provider="CyberElysium\CECrud\CECrudServiceProvider" ```
+
+Run the initialization command
 ``` php artisan install:ce-crud ```
 
 This command sets up the necessary directory structure and updates your composer.json to support domain-driven design in your project.
