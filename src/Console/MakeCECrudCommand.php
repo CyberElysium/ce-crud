@@ -1,6 +1,6 @@
 <?php
 
-namespace CyberElysium\CeCrud\Console\Commands;
+namespace Cyberelysium\CeCrud\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;

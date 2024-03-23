@@ -3,8 +3,8 @@
 namespace Cyberelysium\CeCrud;
 
 use Illuminate\Support\ServiceProvider;
-use CyberElysium\CeCrud\Console\Commands\MakeCECrudCommand;
-use CyberElysium\CeCrud\Console\Commands\InstallCECrudCommand;
+use Cyberelysium\CeCrud\Console\MakeCECrudCommand;
+use Cyberelysium\CeCrud\Console\InstallCECrudCommand;
 
 class CeCrudServiceProvider extends ServiceProvider
 {
@@ -13,12 +13,7 @@ class CeCrudServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                InstallCECrudCommand::class,
-                MakeCECrudCommand::class,
-            ]);
-        }
+        $this->publishes([__DIR__.'/../config/ce-crud.php' => config_path('ce-crud.php')]);
     }
 
     /**
@@ -27,11 +22,11 @@ class CeCrudServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'ce-crud');
+        $this->mergeConfigFrom(__DIR__.'/../config/ce-crud.php', 'ce-crud');
 
-        // Register the main class to use with the facade
-        $this->app->singleton('ce-crud', function () {
-            return new CeCrud;
-        });
+        $this->commands([
+            InstallCECrudCommand::class,
+            MakeCECrudCommand::class,
+        ]);
     }
 }
