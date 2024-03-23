@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,19 +9,26 @@
 
     @include('libraries.styles')
 </head>
+
 <body>
     @include('components.navbar')
-    
-    @include('components.sidebar')
 
-    <div class="body-content">
-        {{ $header ?? '' }}
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            @include('components.sidebar')
 
-        {{ $content ?? '' }}
+            <div class="col py-3">
+                <div class="body-content">
+                    {{ $header ?? '' }}
+
+                    {{ $content ?? '' }}
+                </div>
+            </div>
+        </div>
+        @include('components.footer')
     </div>
-
-    @include('components.footer')
 
     @include('libraries.scripts')
 </body>
+
 </html>
