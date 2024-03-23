@@ -25,6 +25,10 @@ Run the initialization command:
 
 This command sets up the necessary directory structure and updates your composer.json to support domain-driven design in your project.
 
+Then Please run this command to refresh autoload :
+
+``` composer dump-autoload ```
+
 ## Usage
 
 Generating CRUD Operations
