@@ -15,7 +15,7 @@ class {{name}}Controller extends Controller
     public function index()
     {
         $response['{{nameLowerPlural}}'] = {{name}}Facade::all();
-        return view('pages.{{nameLowerPlural}}.all')->with($response);
+        return view('pages.{{nameLowerPlural}}.index')->with($response);
     }
 
     /**
@@ -25,7 +25,7 @@ class {{name}}Controller extends Controller
      */
     public function create()
     {
-        return view('pages.{{nameLowerPlural}}.new');
+        return view('pages.{{nameLowerPlural}}.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class {{name}}Controller extends Controller
     public function store(Request $request)
     {
         {{name}}Facade::store($request->all());
-        return redirect()->route('{{nameLowerPlural}}.all')->with('alert-success', '{{name}} added successfully');
+        return redirect()->route('{{nameLowerPlural}}.index')->with('alert-success', '{{name}} added successfully');
     }
 
     /**
@@ -74,7 +74,7 @@ class {{name}}Controller extends Controller
     public function update(Request $request, $id)
     {
         {{name}}Facade::update($request->all(), $id);
-        return redirect()->route('{{nameLowerPlural}}.all')->with('alert-success', '{{name}} updated successfully');
+        return redirect()->route('{{nameLowerPlural}}.index')->with('alert-success', '{{name}} updated successfully');
     }
 
     /**
@@ -86,6 +86,6 @@ class {{name}}Controller extends Controller
     public function destroy($id)
     {
         {{name}}Facade::delete($id);
-        return redirect()->route('{{nameLowerPlural}}.all')->with('alert-success', '{{name}} deleted successfully');
+        return redirect()->route('{{nameLowerPlural}}.index')->with('alert-success', '{{name}} deleted successfully');
     }
 }

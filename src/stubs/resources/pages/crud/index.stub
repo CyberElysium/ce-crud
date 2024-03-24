@@ -1,16 +1,32 @@
 <x-main-layout>
+    <x-slot name="header">
+        <div class="container">
+            <div class="row">
+                <div class="text-center col-lg-12">
+                    <h1 class="page-title">{{nameLowerPlural}} Page</h1>
+                </div>
+            </div>
+        </div>
+    </x-slot>
     <x-slot name="content">
         <div class="container">
             <div class="row">
                 <div class="text-center col-lg-12">
-                    <h1 class="page-title">Home Page</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                {{columnsHeaders}}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(${{nameLowerPlural}} as ${{nameLower}})
+                            <tr>
+                                {{columnsData}}
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-            <div class="row justify-content-center">
-                <p class="text-center">
-                    Welcome to the home page of the website. This is the main page of the website.
-                    You can navigate to other pages using the navigation bar above.
-                </p>
             </div>
         </div>
     </x-slot>

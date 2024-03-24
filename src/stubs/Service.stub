@@ -35,12 +35,12 @@ class {{name}}Service
     }
 
     /**
-     * create
+     * store
      *
      * @param  mixed $data
      * @return void
      */
-    public function create(array $data)
+    public function store(array $data)
     {
         return $this->{{nameLower}}->create($data);
     }

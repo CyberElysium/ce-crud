@@ -26,8 +26,10 @@ class MakeCECrudCommand extends Command
 
         // Artisan::call('make:controller', ['name' => "{$name}Controller"]);
 
-        $controllerStubPath = __DIR__ . '/../stubs/Controller.stub';
-        $this->createController($name, $controllerStubPath);
+
+        $this->createController($name);
+
+        $this->createCrudViewFiles($name, $tableFields);
 
         // Create the CRUD route file
         $this->createCrudRouteFile($name);
@@ -175,9 +177,11 @@ class MakeCECrudCommand extends Command
         }
     }
 
-    protected function createController($name, $controllerStubPath)
+    protected function createController($name)
     {
+        $controllerStubPath = __DIR__ . '/../stubs/Controller.stub';
         $namePluralLower = Str::plural(Str::snake($name));
+
         $controllerContent = file_get_contents($controllerStubPath);
         $controllerContent = str_replace(['{{name}}', '{{nameLowerPlural}}'], [$name, $namePluralLower], $controllerContent);
 
@@ -190,4 +194,64 @@ class MakeCECrudCommand extends Command
             $this->info("{$name}Controller already exists.");
         }
     }
+
+    protected function createCrudViewFiles($name, $tableFields)
+    {
+        $namePluralLower = Str::plural(Str::snake($name));
+        $dynamicContent = $this->generateDynamicContentForViews($tableFields, $name); // Pass $name here
+
+        $views = ['index', 'create', 'edit'];
+        foreach ($views as $view) {
+            $stubPath = __DIR__ . "/../stubs/resources/pages/crud/$view.stub";
+            $content = file_get_contents($stubPath);
+
+            // Replace placeholders, including a dynamic replacement for the model variable
+            $content = str_replace(
+                ['{{nameLowerPlural}}', '{{nameLower}}', '{{columnsHeaders}}', '{{columnsData}}', '{{formFields}}'],
+                [$namePluralLower, Str::snake(Str::singular($name)), $dynamicContent['columnsHeaders'], $dynamicContent['columnsData'], $dynamicContent['formFields']],
+                $content
+            );
+
+            $viewPath = resource_path("views/pages/$namePluralLower/$view.blade.php");
+            File::ensureDirectoryExists(dirname($viewPath));
+            File::put($viewPath, $content);
+        }
+
+        $this->info("CRUD view files for $name created successfully.");
+    }
+
+
+    protected function createFileFromStub($stubPath, $filePath)
+    {
+        if (File::exists($stubPath)) {
+            $content = File::get($stubPath);
+            File::put($filePath, $content);
+            $this->info("Created view: {$filePath}");
+        } else {
+            $this->error("Stub file does not exist: {$stubPath}");
+        }
+    }
+
+    protected function generateDynamicContentForViews($tableFields, $name)
+    {
+        $nameSingularLower = Str::snake(Str::singular($name)); // Adjusted for singular lowercase
+        $columnsHeaders = '';
+        $columnsData = '';
+        $formFields = '';
+
+        foreach ($tableFields as $field) {
+            $fieldName = $field['field'];
+            $columnsHeaders .= "<th>" . ucfirst($fieldName) . "</th>\n            ";
+
+            // Adjusted for singular lowercase model name in loop
+            $columnsData .= "<td>{{ \$" . $nameSingularLower . "->$fieldName }}</td>\n            ";
+
+            // Generate form fields
+            $formFields .= "<label for='$fieldName'>" . ucfirst($fieldName) . "</label>\n";
+            $formFields .= "<input type='text' name='$fieldName' id='$fieldName' value='{{ old('$fieldName') }}' class='form-control'>\n        ";
+        }
+
+        return compact('columnsHeaders', 'columnsData', 'formFields');
+    }
+
 }
