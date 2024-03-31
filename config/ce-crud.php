@@ -1,9 +1,10 @@
 <?php
 
 /*
- * You can place your custom package configuration in here.
+ * You can place your CE Crud package configuration in here.
  */
 return [
     'api' => false,
-    'views' => false
+    'views' => true,
+    'ui_type' => 'dashboard', // dashboard, website
 ];

@@ -73,7 +73,7 @@ class {{name}}Controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        {{name}}Facade::update($request->all(), $id);
+        {{name}}Facade::update($id, $request->all());
         return redirect()->route('{{nameLowerPlural}}.index')->with('alert-success', '{{name}} updated successfully');
     }
 
