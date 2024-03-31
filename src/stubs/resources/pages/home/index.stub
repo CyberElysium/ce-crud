@@ -1,15 +1,36 @@
 <x-main-layout>
+    <x-slot name="header">
+        <div class="header pb-6">
+            <div class="container-fluid">
+                <div class="header-body">
+                    <div class="col align-items-center py-4">
+                        <h6 class="h2 text-dark d-inline-block mb-0">Dashboard</h6>
+                        <nav aria-label="breadcrumb" class="d-none d-md-block ">
+                            <ol class="breadcrumb breadcrumb-links breadcrumb-light">
+                                <li class="breadcrumb-item"><a href="{{ url('/') }}">
+                                    <i class="bi bi-house"></i>
+                                </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Dashboard
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </x-slot>
     <x-slot name="content">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="text-center col-lg-12">
-                    <h1 class="page-title">Home Page</h1>
+                    <h1 class="page-title">Dashboard</h1>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <p class="text-center">
-                    Welcome to the home page of the website. This is the main page of the website.
-                    You can navigate to other pages using the navigation bar above.
+                    Welcome to the Dashboard
                 </p>
             </div>
         </div>

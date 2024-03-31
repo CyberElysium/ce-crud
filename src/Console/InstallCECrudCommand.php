@@ -30,6 +30,20 @@ class InstallCECrudCommand extends Command
         $composerJson['autoload']['psr-4']['domain\\'] = 'domain/';
         file_put_contents(base_path('composer.json'), json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
+        $sourcePath = __DIR__ . '/../stubs/resources/css/style.css'; // Adjust this path as necessary
+        $destinationPath = public_path('assets/css/style.css'); // Define where you want to copy the file
+
+        // Ensure the destination directory exists
+        File::ensureDirectoryExists(dirname($destinationPath));
+
+        // Copy the file
+        if (!File::exists($destinationPath)) {
+            File::copy($sourcePath, $destinationPath);
+            $this->info("CSS file copied successfully to {$destinationPath}.");
+        } else {
+            $this->info("CSS file already exists at {$destinationPath}.");
+        }
+
         // Create the HomeController
         $this->createHomeController();
 

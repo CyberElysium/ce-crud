@@ -5,29 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>App name</title>
+    <meta name="description" content="">
+    <title>@yield('title','Admin Dashboard | CE Crud')</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     @include('libraries.styles')
+
+    @php
+    $curr_url = Route::currentRouteName();
+    @endphp
+
+    <link href="{{ asset('img/logo/logo.png') }}" rel="icon">
+    <link href="{{ asset('img/logo/logo.png') }}" rel="apple-touch-icon">
 </head>
 
-<body>
-    @include('components.navbar')
-
-    <div class="container-fluid">
-        <div class="row flex-nowrap">
-            @include('components.sidebar')
-
-            <div class="col py-3">
-                <div class="body-content">
-                    {{ $header ?? '' }}
-
-                    {{ $content ?? '' }}
-                </div>
-            </div>
+<body class="font-sans antialiased g-sidenav-show g-sidenav-pinned">
+ @include('components.sidebar')
+    <div class="main-content" id="panel">
+        @include('components.navbar')
+        {{ $header ?? '' }}
+        <div class="container-fluid mt--6">
+            {{ $content ?? '' }}
         </div>
         @include('components.footer')
     </div>
-
     @include('libraries.scripts')
 </body>
 
